@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-20 pb-10 px-6 sm:px-12">
+        <footer className="w-full bg-gradient-to-t from-blue-100/50 to-white border-t border-blue-200/50 pt-20 pb-10 px-6 sm:px-12">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16">
                     {/* Brand Section */}
@@ -14,11 +14,11 @@ const Footer = () => {
                             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center">
                                 <span className="text-white font-bold text-sm text-[16px]">D</span>
                             </div>
-                            <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+                            <span className="text-lg font-bold tracking-tight text-zinc-900">
                                 DesignApp
                             </span>
                         </Link>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
+                        <p className="text-sm text-zinc-700 leading-relaxed mb-8">
                             Designing the future of web experiences with AI-powered tools and modern workflows.
                         </p>
                         <div className="flex gap-4">
@@ -32,8 +32,8 @@ const Footer = () => {
 
                     {/* Links Sections */}
                     <div className="flex flex-col gap-4">
-                        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">Product</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                        <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-wider">Product</h4>
+                        <ul className="flex flex-col gap-3 text-sm text-zinc-600">
                             <li><Link href="#features" className="hover:text-purple-600 transition-colors">Features</Link></li>
                             <li><Link href="#designers" className="hover:text-purple-600 transition-colors">Designers</Link></li>
                             <li><Link href="#integrations" className="hover:text-purple-600 transition-colors">Integrations</Link></li>
@@ -42,8 +42,8 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">Support</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                        <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-wider">Support</h4>
+                        <ul className="flex flex-col gap-3 text-sm text-zinc-600">
                             <li><Link href="/docs" className="hover:text-purple-600 transition-colors">Documentation</Link></li>
                             <li><Link href="/guides" className="hover:text-purple-600 transition-colors">Guides</Link></li>
                             <li><Link href="/help" className="hover:text-purple-600 transition-colors">Help Center</Link></li>
@@ -52,8 +52,8 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">Company</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                        <h4 className="text-sm font-bold text-zinc-900 uppercase tracking-wider">Company</h4>
+                        <ul className="flex flex-col gap-3 text-sm text-zinc-600">
                             <li><Link href="/about" className="hover:text-purple-600 transition-colors">About Us</Link></li>
                             <li><Link href="/careers" className="hover:text-purple-600 transition-colors">Careers</Link></li>
                             <li><Link href="/blog" className="hover:text-purple-600 transition-colors">Blog</Link></li>
@@ -63,13 +63,13 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    <p className="text-xs text-zinc-500">
                         &copy; {new Date().getFullYear()} DesignApp Inc. All rights reserved.
                     </p>
-                    <div className="flex gap-6 text-xs text-zinc-500 dark:text-zinc-400">
-                        <Link href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Terms of Service</Link>
-                        <Link href="/cookies" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Cookie Policy</Link>
+                    <div className="flex gap-6 text-xs text-zinc-500">
+                        <Link href="/privacy" className="hover:text-zinc-900 transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="hover:text-zinc-900 transition-colors">Terms of Service</Link>
+                        <Link href="/cookies" className="hover:text-zinc-900 transition-colors">Cookie Policy</Link>
                     </div>
                 </div>
             </div>
