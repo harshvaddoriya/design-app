@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Harsh Vaddoriya - Portfolio
+
+A production-ready, beautifully designed portfolio application built with Next.js 15+, React 19, Tailwind CSS v4, and Jotai for state management.
+
+## Features
+
+*   **Modern Design:** Glassmorphic UI elements, smooth micro-interactions, and a premium aesthetic.
+*   **Dark/Light Mode:** Seamless theme switching managed by Jotai state and Tailwind's class-based dark mode.
+*   **Showcase Search:** A debounced search bar to filter showcase items (links, GitHub, CV download, etc.).
+*   **State Management:** Powered by Jotai for lightweight, atomic state management.
+*   **Code Quality:** Enforced with ESLint, TypeScript strict mode, and Husky pre-commit hooks running `lint-staged`.
+
+## Tech Stack
+
+*   **Framework:** Next.js (App Router)
+*   **Styling:** Tailwind CSS v4 (with custom `@custom-variant dark`)
+*   **State Management:** Jotai (`atom`)
+*   **Icons:** Custom inline SVGs
+*   **Git Hooks:** Husky + `lint-staged`
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   Node.js (v20+)
+*   `pnpm` (recommended)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/harshvaddoriya/portfolio.git
+    cd portfolio
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  Install dependencies:
+    ```bash
+    pnpm install
+    ```
 
-## Learn More
+3.  Start the development server:
+    ```bash
+    pnpm dev
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+4.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Folder Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*   `app/`: Next.js App Router root.
+    *   `common/`: Reusable, global components (Header, Footer, Atoms).
+        *   `atoms/`: Smallest UI building blocks (Button, Icon, ThemeToggle).
+    *   `components/`: Domain-specific components (HeroSection, SearchBar, ShowcaseList).
+    *   `constants/`: Static data (e.g., showcase items).
+    *   `hooks/`: Custom React hooks (e.g., `useDebounce`).
+    *   `lib/`: Core logic and state (Jotai store).
+    *   `types/`: TypeScript definitions.
+*   `public/`: Static assets (images, fonts).
 
-## Deploy on Vercel
+## Git Hooks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project uses Husky to run pre-commit hooks. Before each commit, `lint-staged` will automatically run ESLint on all staged `.js`, `.jsx`, `.ts`, and `.tsx` files to ensure code quality.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

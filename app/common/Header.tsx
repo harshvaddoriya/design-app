@@ -2,62 +2,99 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import ThemeToggle from "@/app/components/ThemeToggle";
+import { useAtomValue } from "jotai";
+import { themeAtom } from "@/app/atoms/theme";
 
-const Header = () => {
-    const [scrolled, setScrolled] = useState(false);
+const NAV_LINKS = ["Work", "Career", "GitHub", "Contact"] as const;
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+const Header: React.FC = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const theme = useAtomValue(themeAtom);
 
-    return (
-        <header 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 sm:px-12 ${
-                scrolled 
-                ? "py-3 bg-white/70 backdrop-blur-xl border-b border-blue-100" 
-                : "py-6 bg-gradient-to-b from-blue-100/50 to-transparent"
-            }`}
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isLight = theme === "light";
+
+  return (
+    <header
+      className={`
+        fixed top-0 left-0 right-0 z-50
+        transition-all duration-400 ease-out
+        px-6 sm:px-10
+        ${
+          scrolled
+            ? isLight
+              ? "py-3 bg-white/80 backdrop-blur-2xl border-b border-zinc-200/60 shadow-sm"
+              : "py-3 bg-zinc-950/80 backdrop-blur-2xl border-b border-white/8 shadow-sm"
+            : "py-5 bg-transparent"
+        }
+      `}
+    >
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        {/* Logo / Name */}
+        <Link
+          href="/"
+          aria-label="Home"
+          className={`
+            text-base font-bold tracking-tight transition-colors duration-200
+            ${isLight ? "text-zinc-900 hover:text-zinc-600" : "text-white hover:text-white/70"}
+          `}
         >
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-300">
-                        <span className="text-white font-bold text-xl">D</span>
-                    </div>
-                    <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-700">
-                        DesignApp
-                    </span>
-                </Link>
+          <span className="font-black">HV</span>
+          <span className="font-light opacity-50 mx-1">·</span>
+          <span className="font-medium text-sm">Portfolio</span>
+        </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-8">
-                    {["Features", "Designers", "Pricing", "About"].map((item) => (
-                        <Link 
-                            key={item} 
-                            href={`#${item.toLowerCase()}`}
-                            className="text-sm font-semibold text-zinc-700 hover:text-purple-600 transition-colors"
-                        >
-                            {item}
-                        </Link>
-                    ))}
-                </nav>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
+          {NAV_LINKS.map((item) => (
+            <Link
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={`
+                text-sm font-medium transition-colors duration-200
+                ${isLight
+                  ? "text-zinc-500 hover:text-zinc-900"
+                  : "text-white/50 hover:text-white"
+                }
+              `}
+            >
+              {item}
+            </Link>
+          ))}
+        </nav>
 
-                {/* CTA Buttons */}
-                <div className="flex items-center gap-4">
-                    <button className="hidden sm:block text-sm font-semibold text-zinc-700 hover:text-zinc-900 transition-colors cursor-pointer">
-                        Sign In
-                    </button>
-                    <button className="px-5 py-2.5 rounded-full bg-zinc-950 text-white text-sm font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-zinc-900/10 cursor-pointer">
-                        Get Started
-                    </button>
-                </div>
-            </div>
-        </header>
-    );
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            className={`
+              hidden sm:inline-flex items-center gap-1.5
+              text-xs font-bold px-4 py-2.5 rounded-xl
+              transition-all duration-200
+              hover:scale-[1.03] active:scale-[0.97]
+              cursor-pointer
+              ${isLight
+                ? "bg-zinc-900 text-white hover:bg-zinc-800"
+                : "bg-white text-zinc-900 hover:bg-zinc-100"
+              }
+            `}
+          >
+            Hire me
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
