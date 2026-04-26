@@ -16,3 +16,5 @@ export type ShowcaseIcon =
 
 // ─── Theme ───────────────────────────────────────────────
 export type Theme = "light" | "dark";
+
+export * from "./terminal";

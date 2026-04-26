@@ -5,7 +5,7 @@ import { useAtomValue } from "jotai";
 import { debouncedSearchQueryAtom } from "@/app/atoms/search";
 import { SHOWCASE_ITEMS } from "@/app/constants/showcase";
 import { ShowcaseItem } from "@/app/types";
-import Icon from "@/app/components/Icon";
+import Icon from "@/app/components/icons/Icon";
 import { FiChevronRight } from "react-icons/fi";
 
 const ShowcaseList: React.FC = () => {
