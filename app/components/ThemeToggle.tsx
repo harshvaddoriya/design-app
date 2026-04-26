@@ -65,15 +65,15 @@ const ThemeToggle: React.FC = () => {
       className="
         relative flex items-center p-1 rounded-full
         bg-zinc-200 dark:bg-[#1f1f1f] border border-zinc-300 dark:border-white/10
-        shadow-sm transition-colors duration-300 w-[60px] h-8
+        shadow-sm transition-colors duration-300 w-12 h-6 sm:w-[60px] sm:h-8
       "
     >
       {/* Sliding Background */}
       <div
         className={`
-          absolute top-1 bottom-1 w-[26px] rounded-full transition-transform duration-300 ease-out
+          absolute top-1 bottom-1 w-[20px] sm:w-[26px] rounded-full transition-transform duration-300 ease-out
           bg-white dark:bg-[#333333] shadow-sm pointer-events-none
-          ${theme === "dark" ? "translate-x-[26px]" : "translate-x-0"}
+          ${theme === "dark" ? "translate-x-[20px] sm:translate-x-[26px]" : "translate-x-0"}
         `}
       />
       
@@ -81,16 +81,16 @@ const ThemeToggle: React.FC = () => {
         <button
           onClick={(e) => handleThemeChange(e, "light")}
           aria-label="Switch to light mode"
-          className="w-[26px] h-[24px] flex justify-center items-center rounded-full cursor-pointer"
+          className="w-[20px] h-[20px] sm:w-[26px] sm:h-[24px] flex justify-center items-center rounded-full cursor-pointer"
         >
-          <FiSun className={`w-3.5 h-3.5 transition-colors duration-300 ${theme === "light" ? "text-zinc-800" : "text-white/40 hover:text-zinc-500"}`} />
+          <FiSun className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${theme === "light" ? "text-zinc-800" : "text-white/40 hover:text-zinc-500"}`} />
         </button>
         <button
           onClick={(e) => handleThemeChange(e, "dark")}
           aria-label="Switch to dark mode"
-          className="w-[26px] h-[24px] flex justify-center items-center rounded-full cursor-pointer"
+          className="w-[20px] h-[20px] sm:w-[26px] sm:h-[24px] flex justify-center items-center rounded-full cursor-pointer"
         >
-          <FiMoon className={`w-3.5 h-3.5 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-zinc-500 hover:text-white/80"}`} />
+          <FiMoon className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-zinc-500 hover:text-white/80"}`} />
         </button>
       </div>
     </div>

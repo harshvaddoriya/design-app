@@ -71,7 +71,7 @@ const SearchBar: React.FC = () => {
           value={query}
           onChange={handleChange}
           onFocus={() => setFocused(true)}
-          placeholder="Search about…"
+          placeholder="Browse my digital workspace..."
           autoComplete="off"
           aria-label="Search showcase"
           className="
