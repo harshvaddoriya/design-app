@@ -9,11 +9,11 @@ interface TypewriterProps {
   onComplete?: () => void;
 }
 
-const TypewriterComponent = ({ 
-  text, 
-  speed = 20, 
-  delay = 0, 
-  onComplete 
+const TypewriterComponent = ({
+  text,
+  speed = 20,
+  delay = 0,
+  onComplete
 }: TypewriterProps) => {
   const [displayedText, setDisplayedText] = useState("");
   const hasStarted = useRef(false);
@@ -53,7 +53,7 @@ const TypewriterComponent = ({
       clearTimeout(timeoutId);
       clearInterval(intervalId);
     };
-  }, [text, speed, delay]); 
+  }, [text, speed, delay]);
 
   return <span>{displayedText}</span>;
 };

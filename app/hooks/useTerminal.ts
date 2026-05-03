@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { PROJECTS, Project } from "@/app/constants/projects";
-import { LineType, TerminalLine, TerminalTheme } from "@/app/types";
+import { PROJECTS } from "@/app/constants/projects";
+import { LineType, TerminalLine, TerminalTheme, Project } from "@/app/types";
 
 type QueueItem = { type: LineType; content: string; label?: string };
 
@@ -151,6 +151,27 @@ export const useTerminal = () => {
         pushLines([{ type: "success", content: `Terminal accent updated to ${nextTheme}.` }]);
         break;
       }
+      case "services":
+        pushLines([
+          { type: "output", content: "• Frontend Architecture & Development" },
+          { type: "output", content: "• Full Stack SaaS Implementation" },
+          { type: "output", content: "• UI/UX Motion Design" },
+          { type: "output", content: "• Performance Optimization" },
+        ]);
+        break;
+      case "experience":
+        pushLines([
+          { type: "output", content: "• Frontend Engineer (1.5+ Years)" },
+          { type: "output", content: "• Worked on 12+ Professional Projects" },
+          { type: "output", content: "• Specialized in SaaS & Startups" },
+        ]);
+        break;
+      case "pricing":
+        pushLines([
+          { type: "output", content: "Project-based or hourly rates available." },
+          { type: "system", content: "Type 'contact' to discuss your specific needs." },
+        ]);
+        break;
       case "date":
         pushLines([{ type: "output", content: new Date().toLocaleString() }]);
         break;

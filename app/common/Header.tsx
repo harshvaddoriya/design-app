@@ -18,11 +18,14 @@ const LANGUAGES = [
   "Python",
   "Streamlit",
   "MicroFrontend Architecture",
+  "Frontend Engineer",
+  "React Developer",
+  "Web Performance",
 ];
 
 const Header: React.FC = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/10 transition-colors duration-500 flex items-center h-[50px] shadow-sm dark:shadow-none">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-md border-b border-zinc-300 dark:border-white/10 transition-colors duration-500 flex items-center h-[50px] shadow-sm dark:shadow-none">
       <div className="flex-1 overflow-hidden relative flex items-center h-full mask-image-linear-edges">
         <div className="flex whitespace-nowrap animate-marquee items-center w-max">
           {[...LANGUAGES, ...LANGUAGES, ...LANGUAGES, ...LANGUAGES].map((lang, idx) => (

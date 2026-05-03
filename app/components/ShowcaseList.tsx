@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { useAtomValue } from "jotai";
-import { debouncedSearchQueryAtom } from "@/app/atoms/search";
+import { useAtomValue, useSetAtom } from "jotai";
+import { debouncedSearchQueryAtom, isSearchFocusedAtom } from "@/app/atoms/search";
 import { SHOWCASE_ITEMS } from "@/app/constants/showcase";
 import { ShowcaseItem } from "@/app/types";
 import Icon from "@/app/components/icons/Icon";
@@ -10,6 +10,7 @@ import { FiChevronRight } from "react-icons/fi";
 
 const ShowcaseList: React.FC = () => {
   const query = useAtomValue(debouncedSearchQueryAtom);
+  const setIsSearchFocused = useSetAtom(isSearchFocusedAtom);
 
   const filtered: ShowcaseItem[] = useMemo(() => {
     if (!query.trim()) return SHOWCASE_ITEMS;
@@ -22,16 +23,27 @@ const ShowcaseList: React.FC = () => {
   }, [query]);
 
   const handleItemClick = (item: ShowcaseItem) => {
+    // Close search menu
+    setIsSearchFocused(false);
+
     if (item.id === "copy-link") {
       navigator.clipboard.writeText(window.location.href).catch(() => {});
       return;
     }
+    
     if (item.id === "download-cv") {
       window.location.assign(item.href);
       return;
     }
+    
     if (item.href.startsWith("http")) {
       window.open(item.href, "_blank", "noopener,noreferrer");
+    } else if (item.href.startsWith("#")) {
+      const id = item.href.slice(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     } else if (item.href !== "#") {
       window.location.assign(item.href);
     }

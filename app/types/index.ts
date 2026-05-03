@@ -14,6 +14,24 @@ export type ShowcaseIcon =
   | "github"
   | "calendar";
 
+// ─── Project ───────────────────────────────────────────────
+export interface Metric {
+  value: string;
+  label: string;
+}
+
+export interface Project {
+  slug: string;
+  category: string;
+  title: string;
+  description: string;
+  image: string;
+  github: string;
+  demo: string;
+  tags: string[];
+  metrics: Metric[];
+}
+
 // ─── Theme ───────────────────────────────────────────────
 export type Theme = "light" | "dark";
 

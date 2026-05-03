@@ -10,7 +10,7 @@ import Typewriter from "./terminal/Typewriter";
 
 const TerminalSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const {
     history,
     input,
@@ -28,9 +28,9 @@ const TerminalSection = () => {
   } = useTerminal();
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="w-full bg-white dark:bg-zinc-950 py-32 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500 overflow-hidden"
+      className="w-full bg-white dark:bg-zinc-950 pt-32 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
 
@@ -38,27 +38,29 @@ const TerminalSection = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div 
-                className="w-2 h-2 rounded-full" 
-                style={{ 
-                  backgroundColor: terminalTheme === 'emerald' ? '#10b981' : 
-                                  terminalTheme === 'cyan' ? '#06b6d4' : 
-                                  terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e',
-                  boxShadow: `0 0 10px ${terminalTheme === 'emerald' ? '#10b981' : 
-                                       terminalTheme === 'cyan' ? '#06b6d4' : 
-                                       terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'}80`
-                }} 
+              <div
+                className="w-2 h-2 rounded-full"
+                style={{
+                  backgroundColor: terminalTheme === 'emerald' ? '#10b981' :
+                    terminalTheme === 'cyan' ? '#06b6d4' :
+                      terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e',
+                  boxShadow: `0 0 10px ${terminalTheme === 'emerald' ? '#10b981' :
+                    terminalTheme === 'cyan' ? '#06b6d4' :
+                      terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'}80`
+                }}
               />
-              <span 
+              <span
                 className="text-[10px] font-bold tracking-[0.2em] uppercase"
-                style={{ 
-                  color: terminalTheme === 'emerald' ? '#059669' : 
-                         terminalTheme === 'cyan' ? '#0891b2' : 
-                         terminalTheme === 'amber' ? '#d97706' : '#e11d48'
+                style={{
+                  color: terminalTheme === 'emerald' ? '#059669' :
+                    terminalTheme === 'cyan' ? '#0891b2' :
+                      terminalTheme === 'amber' ? '#d97706' : '#e11d48'
                 }}
               >Interactive Shell</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-zinc-900 dark:text-white tracking-[6px]">Terminal</h2>
+            <h2 className="text-4xl sm:text-4xl font-black tracking-tighter flex flex-wrap gap-x-3">
+              <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Terminal</span>
+            </h2>
           </div>
           <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-xs font-medium uppercase tracking-widest leading-relaxed">Direct access to my developer profile and expertise.</p>
         </div>
@@ -85,23 +87,23 @@ const TerminalSection = () => {
                 {history.map((line, idx) => (
                   <div key={line.id}>
                     {line.label && (
-                      <span 
+                      <span
                         className="font-bold mr-3"
-                        style={{ 
-                          color: terminalTheme === 'emerald' ? '#10b981' : 
-                                 terminalTheme === 'cyan' ? '#06b6d4' : 
-                                 terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
+                        style={{
+                          color: terminalTheme === 'emerald' ? '#10b981' :
+                            terminalTheme === 'cyan' ? '#06b6d4' :
+                              terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
                         }}
                       >
                         {line.label}
                       </span>
                     )}
                     <span className={line.type === "error" ? "text-rose-500" : line.type === "system" ? "text-zinc-500" : line.type === "success" ? "text-emerald-500" : "text-zinc-300"}>
-                      {typeof line.content === "string" && line.type !== "input" ? (
-                        <Typewriter 
-                          text={line.content} 
+                      {typeof line.content === "string" && line.type !== "input" && idx < 6 ? (
+                        <Typewriter
+                          text={line.content}
                           speed={line.type === "system" ? 20 : 35}
-                          delay={idx * 600}
+                          delay={idx * 400}
                           onComplete={onLineComplete}
                         />
                       ) : (
@@ -113,12 +115,12 @@ const TerminalSection = () => {
 
                 {!isBooting && (
                   <div className="flex items-center">
-                    <span 
+                    <span
                       className="font-bold mr-3"
-                      style={{ 
-                        color: terminalTheme === 'emerald' ? '#10b981' : 
-                               terminalTheme === 'cyan' ? '#06b6d4' : 
-                               terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
+                      style={{
+                        color: terminalTheme === 'emerald' ? '#10b981' :
+                          terminalTheme === 'cyan' ? '#06b6d4' :
+                            terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
                       }}
                     >
                       visitor@harsh-portfolio:~$
@@ -137,12 +139,12 @@ const TerminalSection = () => {
                         <span>{input}</span>
                         <div
                           className="w-2 h-4 ml-0.5 animate-pulse"
-                          style={{ 
-                            backgroundColor: terminalTheme === 'emerald' ? '#10b981' : 
-                                            terminalTheme === 'cyan' ? '#06b6d4' : 
-                                            terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e',
-                            animationDuration: '0.8s', 
-                            animationTimingFunction: 'steps(2, start)' 
+                          style={{
+                            backgroundColor: terminalTheme === 'emerald' ? '#10b981' :
+                              terminalTheme === 'cyan' ? '#06b6d4' :
+                                terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e',
+                            animationDuration: '0.8s',
+                            animationTimingFunction: 'steps(2, start)'
                           }}
                         />
                       </div>

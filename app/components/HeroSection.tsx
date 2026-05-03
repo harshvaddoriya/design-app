@@ -87,8 +87,9 @@ const HeroSection: React.FC = () => {
             Frontend Engineer · Modern Web Products
           </span>
         </div>
-        <h1 className="text-[clamp(3rem,8vw,6rem)] font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight drop-shadow-xl dark:drop-shadow-2xl transition-colors duration-300 animate-reveal-blur">
-          Harsh Vaddoriya
+        <h1 className="text-[clamp(3rem,8vw,6rem)] font-black leading-[1.05] tracking-tight transition-colors duration-300 animate-reveal-blur pb-2 flex flex-wrap justify-center gap-x-4">
+          <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Harsh</span>
+          <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Vaddoriya</span>
         </h1>
         <p className="text-base sm:text-sm md:text-lg font-medium text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto -mt-2 leading-relaxed min-h-[1.6em]">
           {displayText}

@@ -1,22 +1,22 @@
 "use client";
 
 import React, { useState, useRef, MouseEvent } from "react";
-import Link from "next/link";
-import { PROJECTS, Project } from "@/app/constants/projects";
+import { PROJECTS } from "@/app/constants/projects";
+import { Project } from "@/app/types";
 import { FiArrowUpRight } from "react-icons/fi";
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 
-const ProjectCard = ({ 
-  project, 
-  className, 
+const ProjectCard = ({
+  project,
+  className,
   isLarge,
   isHovered,
   isAnyHovered,
   onMouseEnter,
-  onMouseLeave 
-}: { 
-  project: Project; 
-  className?: string; 
+  onMouseLeave
+}: {
+  project: Project;
+  className?: string;
   isLarge?: boolean;
   isHovered: boolean;
   isAnyHovered: boolean;
@@ -24,7 +24,7 @@ const ProjectCard = ({
   onMouseLeave: () => void;
 }) => {
   const ref = useRef<HTMLAnchorElement>(null);
-  
+
   const xPct = useMotionValue(0);
   const yPct = useMotionValue(0);
   const mouseX = useMotionValue(0);
@@ -36,10 +36,10 @@ const ProjectCard = ({
   const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    
+
     const clientX = e.clientX - rect.left;
     const clientY = e.clientY - rect.top;
-    
+
     mouseX.set(clientX);
     mouseY.set(clientY);
     xPct.set(clientX / rect.width - 0.5);
@@ -53,8 +53,8 @@ const ProjectCard = ({
   };
 
   // Sibling dimming effect
-  const dimClass = isAnyHovered && !isHovered 
-    ? "opacity-50 grayscale-[30%] scale-[0.98] blur-[2px]" 
+  const dimClass = isAnyHovered && !isHovered
+    ? "opacity-50 grayscale-[30%] scale-[0.98] blur-[1px]"
     : "opacity-100 grayscale-0 scale-100 blur-0";
 
   const spotlightColor = "rgba(255,255,255,0.08)";
@@ -78,11 +78,11 @@ const ProjectCard = ({
           rotateY: isHovered ? rotateY : 0,
           transformStyle: "preserve-3d",
         }}
-        className="relative block w-full h-full rounded-3xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500"
+        className="relative block w-full h-full rounded-2xl border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500"
       >
         {/* Background Parallax Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl bg-zinc-100 dark:bg-zinc-900">
-          <motion.div 
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900">
+          <motion.div
             className="w-full h-full bg-cover bg-center origin-center transition-transform duration-1000 ease-out group-hover:scale-110 opacity-0 dark:opacity-30 mix-blend-overlay"
             style={{ backgroundImage: `url(${project.image})` }}
           />
@@ -91,7 +91,7 @@ const ProjectCard = ({
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col h-full p-6 sm:p-8 [transform:translateZ(30px)]">
+        <div className={`relative z-10 flex flex-col h-full ${isLarge ? 'p-6 sm:p-10' : 'p-5 sm:p-7'} [transform:translateZ(30px)]`}>
           <div className="flex justify-between items-start mb-6">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-300 shadow-sm">
               {project.category}
@@ -101,25 +101,33 @@ const ProjectCard = ({
             </div>
           </div>
 
-          <h3 className={`${isLarge ? 'text-4xl sm:text-5xl' : 'text-2xl sm:text-3xl'} font-black tracking-tighter text-zinc-900 dark:text-white mb-4 group-hover:translate-x-2 transition-transform duration-500 ease-out`}>
+          <h3 className={`${isLarge ? 'text-4xl sm:text-5xl' : 'text-xl sm:text-2xl'} font-black tracking-tighter text-zinc-900 dark:text-white mb-2 sm:mb-4 group-hover:translate-x-2 transition-transform duration-500 ease-out`}>
             {project.title}
           </h3>
 
-          <p className={`text-sm text-zinc-600 dark:text-zinc-400 mb-8 max-w-sm leading-relaxed ${isLarge ? 'sm:text-base' : ''}`}>
-            {project.description}
-          </p>
+          {!isLarge && (
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4 line-clamp-1">
+              {project.category}
+            </p>
+          )}
 
-          <div className="mt-auto grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+          {isLarge && (
+            <p className={`text-sm text-zinc-600 dark:text-zinc-400 mb-8 max-w-sm leading-relaxed line-clamp-3 sm:text-base`}>
+              {project.description}
+            </p>
+          )}
+
+          <div className="mt-auto grid grid-cols-2 gap-4 sm:gap-6 border-t border-zinc-200 dark:border-white/5 pt-6">
             {project.metrics.map((metric, idx) => (
-              <div 
-                key={idx} 
-                className="flex flex-col gap-1 border-l-2 border-zinc-200 dark:border-white/10 pl-4 transform origin-left transition-all duration-500 group-hover:border-zinc-900 dark:group-hover:border-white"
+              <div
+                key={idx}
+                className="flex flex-col gap-1 transform origin-left transition-all duration-500"
                 style={{ transitionDelay: `${idx * 50}ms` }}
               >
                 <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tighter">
                   {metric.value}
                 </span>
-                <span className="text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest font-bold whitespace-nowrap">
+                <span className="text-[8px] sm:text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest font-bold leading-tight">
                   {metric.label}
                 </span>
               </div>
@@ -147,42 +155,43 @@ const ProjectsSection: React.FC = () => {
       case 1: return "md:col-span-2 md:row-span-1"; // Wide
       case 2: return "md:col-span-1 md:row-span-1"; // Small
       case 3: return "md:col-span-1 md:row-span-1"; // Small
-      case 4: return "md:col-span-2 md:row-span-1"; // Wide
-      case 5: return "md:col-span-2 md:row-span-1"; // Wide
+      case 4: return "md:col-span-1 md:row-span-1"; // Small
+      case 5: return "md:col-span-3 md:row-span-1"; // Wide to fill row
       default: return "md:col-span-1 md:row-span-1";
     }
   };
 
   return (
-    <section id="projects" className="w-full bg-white dark:bg-zinc-950 transition-colors duration-500 py-24 sm:py-32 relative overflow-hidden">
+    <section id="projects" className="w-full bg-white dark:bg-zinc-950 transition-colors duration-500 py-24 relative overflow-hidden">
       {/* Decorative background blur */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-zinc-200/50 dark:bg-white/5 rounded-full blur-[120px] pointer-events-none opacity-50" />
-      
+
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 relative z-10">
-        
-        <div className="mb-16 md:mb-24 flex flex-col items-start">
+
+        <div className="mb-16 flex flex-col items-start">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-2 h-2 rounded-full bg-zinc-900 dark:bg-white animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
               Selected Work
             </span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-zinc-900 dark:text-white">
-            Engineering Excellence.
+          <h2 className="text-4xl sm:text-4xl font-black tracking-tighter flex flex-wrap gap-x-3">
+            <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Engineering</span>
+            <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Excellence.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[280px] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[320px] gap-4">
           {PROJECTS.map((project, index) => {
             const spanClass = getSpanClass(index);
             const isLarge = index === 0;
             const isHovered = hoveredIndex === index;
-            
+
             return (
-              <ProjectCard 
-                key={project.slug} 
-                project={project} 
-                className={spanClass} 
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                className={spanClass}
                 isLarge={isLarge}
                 isHovered={isHovered}
                 isAnyHovered={isAnyHovered}

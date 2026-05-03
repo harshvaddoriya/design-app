@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { Toaster } from "react-hot-toast";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,6 +41,20 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white transition-colors duration-300">
         <ThemeProvider>
           {children}
+          <Toaster 
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: "#18181b",
+                color: "#fff",
+                border: "1px solid #27272a",
+                fontSize: "13px",
+                fontWeight: "500",
+                borderRadius: "12px",
+                padding: "12px 16px",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

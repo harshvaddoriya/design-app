@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { FiGithub, FiGlobe } from "react-icons/fi";
-import { PROJECTS } from "@/app/constants/projects";
+import { Project } from "@/app/types";
 
 interface ProjectModalProps {
-  project: typeof PROJECTS[0];
+  project: Project;
   onClose: () => void;
 }
 

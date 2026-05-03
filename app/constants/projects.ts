@@ -1,25 +1,15 @@
-export interface Project {
-  slug: string;
-  category: string;
-  title: string;
-  description: string;
-  image: string;
-  github: string;
-  demo: string;
-  tags: string[];
-  metrics: { label: string; value: string }[];
-}
+import { Project } from "@/app/types";
 
 export const PROJECTS: Project[] = [
   {
-    slug: "ai-media-platform",
-    category: "AI AUTOMATION",
-    title: "AI Media Platform",
-    description: "End-to-end agentic AI platform automating image, video & document generation with async workflows and real-time WebSockets",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop",
+    slug: "ai-desktop-app",
+    category: "OpenSource Desktop App",
+    title: "Desktop App",
+    description: "A Modern Desktop App that is built with React and TailwindCSS. It is a responsive desktop app with a modern and clean design.",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["Next.js", "Python", "OpenAI", "WebSockets"],
+    tags: ["Next.js", "Python", "OpenAI", "WebSockets", "Tauri", "SQLite"],
     metrics: [
       { value: "95+", label: "LIGHTHOUSE SCORE" },
       { value: "100%", label: "CORE WEB VITALS" },
@@ -27,74 +17,74 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    slug: "autogenix-website-ai",
-    category: "FULL STACK AI",
-    title: "AutoGenix Website AI",
-    description: "Agentic AI Website Generator",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+    slug: "coffee-site",
+    category: "Modern Coffee Website",
+    title: "Coffee Website",
+    description: "A Modern Coffee Website that is built with React and TailwindCSS. It is a responsive coffee website with a modern and clean design.",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["React", "AI", "Vercel", "Tailwind"],
+    tags: ["React", "EJS", "Vercel", "Tailwind"],
     metrics: [
       { value: "100%", label: "UX FOCUSED" },
       { value: "AA+", label: "ACCESSIBILITY" },
-      { value: "REST", label: "BACKEND APIS" },
+      { value: "REST", label: "API ARCHITECTURE" },
     ]
   },
   {
-    slug: "ai-video-cloning",
-    category: "AI MEDIA",
-    title: "AI Video Cloning",
-    description: "Autonomous Video & Script Engine",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop",
-    github: "https://github.com",
-    demo: "https://demo.com",
-    tags: ["PyTorch", "FFmpeg", "AWS", "FastAPI"],
-    metrics: [
-      { value: "95+", label: "PERFORMANCE SCORE" },
-      { value: "Smooth", label: "INTERACTIONS" },
-    ]
-  },
-  {
-    slug: "comfyui-face-blend",
+    slug: "bulk-email-sender",
     category: "AI WORKFLOW",
-    title: "ComfyUI Face-Blend",
+    title: "Bulk Email Sender",
     description: "Photorealistic Baby Generator",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["ComfyUI", "Stable Diffusion", "SDXL", "LoRA"],
+    tags: ["Resend API", "Node.js", "MongoDB", "TailwindCSS", "Nextjs"],
     metrics: [
       { value: "100%", label: "WCAG COMPLIANT" },
       { value: "100%", label: "SCALABLE ARCHITECTURE" },
     ]
   },
   {
-    slug: "pinterest-blog-ai",
+    slug: "meeting-management-tool",
     category: "AI CONTENT",
-    title: "Pinterest Blog AI",
+    title: "Meeting Management Tool",
     description: "Content & Visual Automation",
-    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=2000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["Pinterest API", "GPT-4", "DALL-E", "Automation"],
+    tags: ["Streamlit", "python", "Huggings Face", "LLMs"],
     metrics: [
       { value: "24/7", label: "PRODUCTION READY" },
       { value: "REST/QL", label: "STATE MANAGEMENT" },
     ]
   },
   {
-    slug: "comic-book-generator",
+    slug: "social-media-downloader",
     category: "AI APPLICATION",
-    title: "Comic Book Generator",
-    description: "Personalized Story Flipbook",
-    image: "https://images.unsplash.com/photo-1588497859490-85d1c17db96d?q=80&w=2000&auto=format&fit=crop",
+    title: "Social Media Downloader",
+    description: "Social Media iamge,video,Reels,Story,IG,Posts Downloader",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["Canvas API", "Stable Diffusion", "Storytelling", "React"],
+    tags: ["Next.js", "Nodejs", "MicroFronted Architrecture"],
     metrics: [
       { value: "100%", label: "CORE WEB VITALS" },
       { value: "AA+", label: "INCLUSIVE DESIGN" },
+    ]
+  },
+  {
+    slug: "pinterest-clone",
+    category: "Social Media App",
+    title: "Pinterest Clone",
+    description: "A Modern Social Media App that is built with React and TailwindCSS. It is a responsive social media app with a modern and clean design.",
+    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=2000&auto=format&fit=crop",
+    github: "https://github.com",
+    demo: "https://demo.com",
+    tags: ["React", "Next.js", "TailwindCSS", "FireStore", "Unsplace media API", "React-icons"],
+    metrics: [
+      { value: "95+", label: "PERFORMANCE SCORE" },
+      { value: "Smooth", label: "INTERACTIONS" },
     ]
   }
 ];
