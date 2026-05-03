@@ -130,7 +130,6 @@ const TerminalSection = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        autoFocus
                         className="absolute inset-0 w-full bg-transparent border-none outline-none text-transparent font-mono caret-transparent z-10"
                         spellCheck={false}
                       />

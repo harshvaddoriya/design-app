@@ -3,7 +3,7 @@ import { FiSend, FiGithub, FiLinkedin, FiMail, FiPhone, FiFileText } from "react
 
 const ContactSection = () => {
   return (
-    <section className="w-full bg-white dark:bg-zinc-950 pt-32 pb-40 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500">
+    <section className="w-full bg-white dark:bg-zinc-950 py-32 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch border border-zinc-200 dark:border-white/10">
 

@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
       <div className="relative z-[40] w-full max-w-2xl mx-auto px-5 flex flex-col items-center gap-6 text-center">
         <div className="inline-flex items-center gap-2 mt-2 px-5 py-2 rounded-full border border-zinc-200 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.1)] transition-colors duration-300 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <span className="text-[12px] font-bold tracking-widest uppercase bg-clip-text text-transparent bg-gradient-to-r from-zinc-500 via-zinc-900 to-zinc-500 dark:from-white/40 dark:via-white dark:to-white/40 bg-[length:200%_auto] animate-text-shimmer">
-            Full Stack Engineer · Modern Web Products
+            Frontend Engineer · Modern Web Products
           </span>
         </div>
         <h1 className="text-[clamp(3rem,8vw,6rem)] font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight drop-shadow-xl dark:drop-shadow-2xl transition-colors duration-300 animate-reveal-blur">
@@ -96,12 +96,12 @@ const HeroSection: React.FC = () => {
         </p>
 
 
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[10px] sm:text-[11px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400/80 uppercase mt-1 mb-2">
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[10px] sm:text-[12px] font-bold tracking-wider text-zinc-500 dark:text-zinc-400/80 uppercase mt-1 mb-2">
           <span>1.5+ Years Experience</span>
           <span className="text-zinc-300 dark:text-zinc-800 hidden sm:block">•</span>
           <span>12+ Projects</span>
           <span className="text-zinc-300 dark:text-zinc-800 hidden sm:block">•</span>
-          <span>Frontend + Full Stack</span>
+          <span>Frontend-Focused Full Stack Developer</span>
 
         </div>
 
@@ -129,17 +129,20 @@ const HeroSection: React.FC = () => {
 
       </div>
 
+      {/* Vertical Status Bar (Left Side) */}
+      <div className="absolute left-6 sm:left-10 top-1/2 -translate-y-1/2 z-[5] hidden lg:flex flex-col items-center gap-6">
+        <div className="w-px h-20 bg-zinc-200 dark:bg-white/10" />
+        <div className="rotate-180 [writing-mode:vertical-lr] flex items-center gap-1">
+          <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-500 whitespace-nowrap">
+            Available for Projects
+          </span>
+        </div>
+        <div className="w-px h-20 bg-zinc-200 dark:bg-white/10" />
+      </div>
+
       {/* Vertical Social Bar (Right Side) */}
       <div className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 z-[5] hidden lg:flex flex-col items-center gap-6">
-        <a
-          href="https://github.com/harshvaddoriya"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-all duration-300 hover:-translate-y-1"
-          aria-label="GitHub"
-        >
-          <FiGithub className="w-5 h-5" />
-        </a>
+        <div className="w-px h-20 bg-zinc-200 dark:bg-white/10" />
         <a
           href="https://www.linkedin.com/in/harsh-vaddoriya/"
           target="_blank"
@@ -148,6 +151,15 @@ const HeroSection: React.FC = () => {
           aria-label="LinkedIn"
         >
           <FiLinkedin className="w-5 h-5" />
+        </a>
+        <a
+          href="https://github.com/harshvaddoriya"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-white transition-all duration-300 hover:-translate-y-1"
+          aria-label="GitHub"
+        >
+          <FiGithub className="w-5 h-5" />
         </a>
         <a
           href="mailto:harshvaddoriya0319@gmail.com"

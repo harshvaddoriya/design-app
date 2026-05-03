@@ -21,9 +21,9 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["Next.js", "Python", "OpenAI", "WebSockets"],
     metrics: [
-      { value: "94%", label: "AUTOMATION RATE" },
-      { value: "3x", label: "FASTER DELIVERY" },
-      { value: "50+", label: "CONCURRENT JOBS" },
+      { value: "95+", label: "LIGHTHOUSE SCORE" },
+      { value: "100%", label: "CORE WEB VITALS" },
+      { value: "24/7", label: "PRODUCTION READY" },
     ]
   },
   {
@@ -36,9 +36,9 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["React", "AI", "Vercel", "Tailwind"],
     metrics: [
-      { value: "92%", label: "CODE ACCURACY" },
-      { value: "<2min", label: "DEPLOY TIME" },
-      { value: "100%", label: "ZERO MANUAL" },
+      { value: "100%", label: "UX FOCUSED" },
+      { value: "AA+", label: "ACCESSIBILITY" },
+      { value: "REST", label: "BACKEND APIS" },
     ]
   },
   {
@@ -51,8 +51,8 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["PyTorch", "FFmpeg", "AWS", "FastAPI"],
     metrics: [
-      { value: "89%", label: "SCENE ACCURACY" },
-      { value: "5x", label: "PRODUCTION SPEED" },
+      { value: "95+", label: "PERFORMANCE SCORE" },
+      { value: "Smooth", label: "INTERACTIONS" },
     ]
   },
   {
@@ -65,8 +65,8 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["ComfyUI", "Stable Diffusion", "SDXL", "LoRA"],
     metrics: [
-      { value: "97%", label: "IDENTITY MATCH" },
-      { value: "95%", label: "REALISM SCORE" },
+      { value: "100%", label: "WCAG COMPLIANT" },
+      { value: "100%", label: "SCALABLE ARCHITECTURE" },
     ]
   },
   {
@@ -79,8 +79,8 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["Pinterest API", "GPT-4", "DALL-E", "Automation"],
     metrics: [
-      { value: "10x", label: "CONTENT OUTPUT" },
-      { value: "93%", label: "STYLE MATCH" },
+      { value: "24/7", label: "PRODUCTION READY" },
+      { value: "REST/QL", label: "STATE MANAGEMENT" },
     ]
   },
   {
@@ -93,8 +93,8 @@ export const PROJECTS: Project[] = [
     demo: "https://demo.com",
     tags: ["Canvas API", "Stable Diffusion", "Storytelling", "React"],
     metrics: [
-      { value: "96%", label: "FACE CONSISTENCY" },
-      { value: "98%", label: "STORY COHERENCE" },
+      { value: "100%", label: "CORE WEB VITALS" },
+      { value: "AA+", label: "INCLUSIVE DESIGN" },
     ]
   }
 ];
