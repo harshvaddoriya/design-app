@@ -30,7 +30,7 @@ const TerminalSection = () => {
   return (
     <section
       ref={containerRef}
-      className="w-full bg-white dark:bg-zinc-950 pt-32 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500 overflow-hidden"
+      className="w-full bg-white dark:bg-zinc-950 pt-32 pb-16 border-t border-zinc-200 dark:border-white/[0.05] transition-colors duration-500 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
 

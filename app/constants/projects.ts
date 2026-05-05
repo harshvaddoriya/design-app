@@ -2,14 +2,14 @@ import { Project } from "@/app/types";
 
 export const PROJECTS: Project[] = [
   {
-    slug: "ai-desktop-app",
-    category: "OpenSource Desktop App",
-    title: "Desktop App",
-    description: "A Modern Desktop App that is built with React and TailwindCSS. It is a responsive desktop app with a modern and clean design.",
+    slug: "gradex-results",
+    category: "Public Application",
+    title: "Gradex Results",
+    description: "A Modern Desktop App that is built with Mext JS and TailwindCSS. It is a responsive desktop app with a modern and clean design.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["Next.js", "Python", "OpenAI", "WebSockets", "Tauri", "SQLite"],
+    tags: ["Next.js", "MongoDB", "Tailwind CSS", "Node JS"],
     metrics: [
       { value: "95+", label: "LIGHTHOUSE SCORE" },
       { value: "100%", label: "CORE WEB VITALS" },
@@ -32,17 +32,17 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    slug: "bulk-email-sender",
-    category: "AI WORKFLOW",
-    title: "Bulk Email Sender",
-    description: "Photorealistic Baby Generator",
-    image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=2000&auto=format&fit=crop",
+    slug: "ai-desktop-app",
+    category: "OpenSource Desktop App",
+    title: "Desktop App",
+    description: "A Modern Desktop App that is built with React and TailwindCSS. It is a responsive desktop app with a modern and clean design.",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
-    tags: ["Resend API", "Node.js", "MongoDB", "TailwindCSS", "Nextjs"],
+    tags: ["Next.js", "Python", "OpenAI", "WebSockets", "Tauri", "SQLite"],
     metrics: [
-      { value: "100%", label: "WCAG COMPLIANT" },
-      { value: "100%", label: "SCALABLE ARCHITECTURE" },
+      { value: "100%", label: "CORE WEB VITALS" },
+      { value: "24/7", label: "PRODUCTION READY" },
     ]
   },
   {
@@ -61,7 +61,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "social-media-downloader",
-    category: "AI APPLICATION",
+    category: "SOCIAL MEDIA APPLICATION",
     title: "Social Media Downloader",
     description: "Social Media iamge,video,Reels,Story,IG,Posts Downloader",
     image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2000&auto=format&fit=crop",
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     category: "Social Media App",
     title: "Pinterest Clone",
     description: "A Modern Social Media App that is built with React and TailwindCSS. It is a responsive social media app with a modern and clean design.",
-    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=2000&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1636044594149-6e2f289c3868?q=80&w=2000&auto=format&fit=crop",
     github: "https://github.com",
     demo: "https://demo.com",
     tags: ["React", "Next.js", "TailwindCSS", "FireStore", "Unsplace media API", "React-icons"],

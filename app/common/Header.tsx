@@ -5,6 +5,7 @@ import ThemeToggle from "@/app/components/ThemeToggle";
 
 const LANGUAGES = [
   "Figma",
+  "Framer",
   "CSS3",
   "SCSS/SASS",
   "Bootstrap",
@@ -17,9 +18,8 @@ const LANGUAGES = [
   "Firebase",
   "Python",
   "Streamlit",
+  "React/Next JS Developer",
   "MicroFrontend Architecture",
-  "Frontend Engineer",
-  "React Developer",
   "Web Performance",
 ];
 

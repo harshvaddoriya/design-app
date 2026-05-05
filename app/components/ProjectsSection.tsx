@@ -4,7 +4,8 @@ import React, { useState, useRef, MouseEvent } from "react";
 import { PROJECTS } from "@/app/constants/projects";
 import { Project } from "@/app/types";
 import { FiArrowUpRight } from "react-icons/fi";
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import ProjectModal from "./terminal/ProjectModal";
 
 const ProjectCard = ({
   project,
@@ -13,7 +14,8 @@ const ProjectCard = ({
   isHovered,
   isAnyHovered,
   onMouseEnter,
-  onMouseLeave
+  onMouseLeave,
+  onClick
 }: {
   project: Project;
   className?: string;
@@ -22,8 +24,9 @@ const ProjectCard = ({
   isAnyHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  onClick: () => void;
 }) => {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const xPct = useMotionValue(0);
   const yPct = useMotionValue(0);
@@ -33,7 +36,7 @@ const ProjectCard = ({
   const rotateX = useSpring(useTransform(yPct, [-0.5, 0.5], ["5deg", "-5deg"]), { stiffness: 300, damping: 30 });
   const rotateY = useSpring(useTransform(xPct, [-0.5, 0.5], ["-5deg", "5deg"]), { stiffness: 300, damping: 30 });
 
-  const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
 
@@ -67,9 +70,9 @@ const ProjectCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
     >
-      <motion.a
+      <motion.div
         ref={ref}
-        href={`/project/${project.slug}`}
+        onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -78,7 +81,7 @@ const ProjectCard = ({
           rotateY: isHovered ? rotateY : 0,
           transformStyle: "preserve-3d",
         }}
-        className="relative block w-full h-full rounded-2xl border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500"
+        className="relative block w-full h-full rounded-2xl border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500 cursor-pointer"
       >
         {/* Background Parallax Image */}
         <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900">
@@ -140,13 +143,14 @@ const ProjectCard = ({
           className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"
           style={{ background: backgroundOverlay }}
         />
-      </motion.a>
+      </motion.div>
     </motion.div>
   );
 };
 
 const ProjectsSection: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
   const isAnyHovered = hoveredIndex !== null;
 
   const getSpanClass = (index: number) => {
@@ -170,8 +174,8 @@ const ProjectsSection: React.FC = () => {
 
         <div className="mb-16 flex flex-col items-start">
           <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-zinc-900 dark:bg-white animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 dark:text-zinc-400">
+            <div className="w-2 h-2 rounded-full bg-[#059669] animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#059669]">
               Selected Work
             </span>
           </div>
@@ -197,13 +201,21 @@ const ProjectsSection: React.FC = () => {
                 isAnyHovered={isAnyHovered}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setActiveProject(project)}
               />
             );
           })}
         </div>
       </div>
+
+      <AnimatePresence>
+        {activeProject && (
+          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
 
 export default ProjectsSection;
+
