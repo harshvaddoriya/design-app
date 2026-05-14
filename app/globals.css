@@ -188,3 +188,36 @@ body {
   animation: cursor-blink 0.8s step-end infinite;
   vertical-align: middle;
 }
+
+@keyframes cta-button-outline-draw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.cta-button-outline {
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cta-button:hover .cta-button-outline,
+.cta-button:focus-visible .cta-button-outline {
+  animation: cta-button-outline-draw 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1 both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-button:hover .cta-button-outline,
+  .cta-button:focus-visible .cta-button-outline {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

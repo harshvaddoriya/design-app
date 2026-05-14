@@ -1,6 +1,9 @@
 import Footer from "@/app/common/Footer";
 import HeroSection from "@/app/components/HeroSection";
 import ProjectsSection from "@/app/components/ProjectsSection";
+import CallToActionSection from "@/app/components/CallToActionSection";
+import ExperienceSection from "@/app/components/ExperienceSection";
+import Education from "@/app/components/Education";
 import TerminalSection from "@/app/components/TerminalSection";
 import ContactSection from "@/app/components/ContactSection";
 import Header from "@/app/common/Header";
@@ -13,6 +16,9 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection />
         <ProjectsSection />
+        <CallToActionSection />
+        <ExperienceSection />
+        <Education />
         <TerminalSection />
         <ContactSection />
       </main>

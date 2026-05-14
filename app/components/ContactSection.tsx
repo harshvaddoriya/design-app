@@ -175,7 +175,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={status === "submitting" || status === "success"}
-                className="w-full bg-white text-black hover:bg-zinc-200 transition-colors py-5 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
+                className="cursor-pointer w-full bg-white text-black hover:bg-zinc-200 transition-colors py-5 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {status === "submitting" ? (
                   <span className="animate-pulse">Sending...</span>

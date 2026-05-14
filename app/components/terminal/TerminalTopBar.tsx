@@ -30,7 +30,7 @@ const TerminalTopBar: React.FC<TerminalTopBarProps> = ({ onReset }) => {
           className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors" 
           onClick={onReset} 
         />
-        <Maximize2 className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors" />
+        {/* <Maximize2 className="w-3.5 h-3.5 text-zinc-400 hover:text-zinc-900 dark:hover:text-white cursor-pointer transition-colors" /> */}
       </div>
     </div>
   );

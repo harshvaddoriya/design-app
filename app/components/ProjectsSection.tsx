@@ -81,16 +81,16 @@ const ProjectCard = ({
           rotateY: isHovered ? rotateY : 0,
           transformStyle: "preserve-3d",
         }}
-        className="relative block w-full h-full rounded-2xl border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500 cursor-pointer"
+        className="relative block w-full h-full rounded-2xl border border-zinc-200 bg-white dark:border-white/5 dark:bg-zinc-950 overflow-hidden group shadow-lg hover:shadow-2xl transition-shadow duration-500 cursor-pointer"
       >
         {/* Background Parallax Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl bg-white dark:bg-zinc-900">
           <motion.div
             className="w-full h-full bg-cover bg-center origin-center transition-transform duration-1000 ease-out group-hover:scale-110 opacity-0 dark:opacity-30 mix-blend-overlay"
             style={{ backgroundImage: `url(${project.image})` }}
           />
           {/* Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/90 to-white/20 dark:from-zinc-950 dark:via-zinc-950/90 dark:to-zinc-950/20" />
+          <div className="absolute inset-0 hidden bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-zinc-950/20 dark:block" />
         </div>
 
         {/* Content */}
@@ -140,7 +140,7 @@ const ProjectCard = ({
 
         {/* Dynamic Spotlight */}
         <motion.div
-          className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"
+          className="pointer-events-none absolute -inset-px z-20 hidden rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:block"
           style={{ background: backgroundOverlay }}
         />
       </motion.div>
@@ -168,7 +168,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section id="projects" className="w-full bg-white dark:bg-zinc-950 transition-colors duration-500 py-24 relative overflow-hidden">
       {/* Decorative background blur */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-zinc-200/50 dark:bg-white/5 rounded-full blur-[120px] pointer-events-none opacity-50" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 opacity-50 blur-[120px] dark:block" />
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 relative z-10">
 
@@ -179,9 +179,9 @@ const ProjectsSection: React.FC = () => {
               Selected Work
             </span>
           </div>
-          <h2 className="text-4xl sm:text-4xl font-black tracking-tighter flex flex-wrap gap-x-3">
-            <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Engineering</span>
-            <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-400 dark:from-zinc-100 dark:to-zinc-500 text-transparent bg-clip-text">Excellence.</span>
+          <h2 className="flex flex-wrap gap-x-3 text-4xl font-black tracking-tighter text-zinc-950 sm:text-4xl">
+            <span className="inline-block dark:bg-gradient-to-b dark:from-zinc-100 dark:to-zinc-500 dark:bg-clip-text dark:text-transparent">Engineering</span>
+            <span className="inline-block dark:bg-gradient-to-b dark:from-zinc-100 dark:to-zinc-500 dark:bg-clip-text dark:text-transparent">Excellence.</span>
           </h2>
         </div>
 
@@ -218,4 +218,3 @@ const ProjectsSection: React.FC = () => {
 };
 
 export default ProjectsSection;
-
