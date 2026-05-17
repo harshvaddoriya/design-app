@@ -2,6 +2,8 @@
 
 import React, { useId } from "react";
 import { FiBox, FiSettings } from "react-icons/fi";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 type CallToActionSectionProps = {
   title?: string;
@@ -17,10 +19,49 @@ const CallToActionSection = ({
   targetId = "contact",
 }: CallToActionSectionProps) => {
   const gradientId = useId();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleAction = () => {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push(`/?scroll=${targetId}`);
+    }
   };
+
+  const buttonContent = (
+    <>
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full overflow-visible opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        viewBox="0 0 160 52"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="160" y2="52" gradientUnits="userSpaceOnUse">
+            <stop className="[stop-color:rgba(24,24,27,0.18)] dark:[stop-color:rgba(255,255,255,0.28)]" />
+            <stop offset="0.5" className="[stop-color:rgba(24,24,27,0.54)] dark:[stop-color:rgba(255,255,255,0.78)]" />
+            <stop offset="1" className="[stop-color:rgba(24,24,27,0.18)] dark:[stop-color:rgba(255,255,255,0.28)]" />
+          </linearGradient>
+        </defs>
+        <rect
+          className="cta-button-outline"
+          x="1"
+          y="1"
+          width="158"
+          height="50"
+          rx="25"
+          ry="25"
+          pathLength="1"
+          stroke={`url(#${gradientId})`}
+        />
+      </svg>
+      <span className="relative z-10">{actionLabel}</span>
+    </>
+  );
+
+  const commonClasses = "cta-button group relative mt-10 cursor-pointer overflow-hidden rounded-full border border-zinc-300 bg-white/70 px-8 py-4 text-sm font-semibold text-zinc-950 shadow-[0_12px_40px_rgba(24,24,27,0.08)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:border-zinc-400 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400/50 active:scale-[0.98] dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_12px_40px_rgba(255,255,255,0.08)] dark:hover:border-white/25 dark:hover:bg-white/15 dark:focus-visible:ring-white/40";
 
   return (
     <section className="relative overflow-hidden bg-white px-6 py-0 text-zinc-950 dark:bg-[#09090b] dark:text-white sm:px-8">
@@ -62,38 +103,22 @@ const CallToActionSection = ({
             {subtitle}
           </p>
 
-          <button
-            type="button"
-            onClick={handleAction}
-            className="cta-button group relative mt-10 cursor-pointer overflow-hidden rounded-full border border-zinc-300 bg-white/70 px-8 py-4 text-sm font-semibold text-zinc-950 shadow-[0_12px_40px_rgba(24,24,27,0.08)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:border-zinc-400 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400/50 active:scale-[0.98] dark:border-white/15 dark:bg-white/10 dark:text-white dark:shadow-[0_12px_40px_rgba(255,255,255,0.08)] dark:hover:border-white/25 dark:hover:bg-white/15 dark:focus-visible:ring-white/40"
-          >
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full overflow-visible opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              viewBox="0 0 160 52"
-              preserveAspectRatio="none"
-              aria-hidden="true"
+          {pathname === "/" ? (
+            <button
+              type="button"
+              onClick={handleAction}
+              className={commonClasses}
             >
-              <defs>
-                <linearGradient id={gradientId} x1="0" y1="0" x2="160" y2="52" gradientUnits="userSpaceOnUse">
-                  <stop className="[stop-color:rgba(24,24,27,0.18)] dark:[stop-color:rgba(255,255,255,0.28)]" />
-                  <stop offset="0.5" className="[stop-color:rgba(24,24,27,0.54)] dark:[stop-color:rgba(255,255,255,0.78)]" />
-                  <stop offset="1" className="[stop-color:rgba(24,24,27,0.18)] dark:[stop-color:rgba(255,255,255,0.28)]" />
-                </linearGradient>
-              </defs>
-              <rect
-                className="cta-button-outline"
-                x="1"
-                y="1"
-                width="158"
-                height="50"
-                rx="25"
-                ry="25"
-                pathLength="1"
-                stroke={`url(#${gradientId})`}
-              />
-            </svg>
-            <span className="relative z-10">{actionLabel}</span>
-          </button>
+              {buttonContent}
+            </button>
+          ) : (
+            <Link
+              href={`/?scroll=${targetId}`}
+              className={commonClasses}
+            >
+              {buttonContent}
+            </Link>
+          )}
         </div>
       </div>
     </section>

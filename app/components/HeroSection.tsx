@@ -8,10 +8,13 @@ import Images from "@/public/assets/images";
 import { useAtom } from "jotai";
 import { isSearchFocusedAtom } from "@/app/atoms/search";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const HeroSection: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useAtom(isSearchFocusedAtom);
   const searchContainerRef = useRef<HTMLDivElement>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const subHeadlineText = "Building Revenue-Driven Frontends for SaaS & Startup Products";
   const [displayText, setDisplayText] = React.useState("");
 
@@ -36,23 +39,49 @@ const HeroSection: React.FC = () => {
     }
   }, [isSearchOpen]);
 
-  React.useEffect(() => {
+  // Combined mount-time logic: Typing effect & Scroll restoration
+  useEffect(() => {
+    // 1. Typing effect logic
     let i = 0;
     const interval = setInterval(() => {
       setDisplayText(subHeadlineText.slice(0, i));
       i++;
       if (i > subHeadlineText.length) clearInterval(interval);
     }, 50);
-    return () => clearInterval(interval);
-  }, []);
 
-  // Force scroll to top on refresh
-  React.useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    // 2. Scroll to top logic (only if no targeted scroll is requested)
+    if (!window.location.hash && !searchParams.get("scroll")) {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
-  }, []);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run once on mount to initialize the page state
+
+  // Handle query-param based scrolling (Production Ready Solution)
+  useEffect(() => {
+    const scrollTo = searchParams.get("scroll");
+    if (scrollTo) {
+      const timer = setTimeout(() => {
+        const element = document.getElementById(scrollTo);
+        if (element) {
+          // Use coordinate-based scroll for maximum production reliability
+          const yOffset = -80; // Account for fixed header
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          
+          // Clean up the URL slightly later so it doesn't break the scroll animation
+          setTimeout(() => {
+            router.replace("/", { scroll: false });
+          }, 1000);
+        }
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, router]);
 
   return (
     <section

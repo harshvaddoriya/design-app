@@ -8,8 +8,8 @@ const storage = createJSONStorage<Theme>(() => {
   }
   return {
     getItem: () => null,
-    setItem: () => {},
-    removeItem: () => {},
+    setItem: () => { },
+    removeItem: () => { },
   };
 });
 

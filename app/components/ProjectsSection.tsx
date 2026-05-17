@@ -4,6 +4,9 @@ import React, { useState, useRef, MouseEvent } from "react";
 import { PROJECTS } from "@/app/constants/projects";
 import { Project } from "@/app/types";
 import { FiArrowUpRight } from "react-icons/fi";
+import { MdArrowOutward } from "react-icons/md";
+import { IoArrowForwardOutline } from "react-icons/io5";
+import Link from "next/link";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import ProjectModal from "./terminal/ProjectModal";
 
@@ -104,51 +107,51 @@ const ProjectCard = ({
             </div>
           </div>
 
-          <h3 className={`${isLarge ? 'text-4xl sm:text-5xl' : 'text-xl sm:text-2xl'} font-black tracking-tighter text-zinc-900 dark:text-white mb-2 sm:mb-4 group-hover:translate-x-2 transition-transform duration-500 ease-out`}>
-            {project.title}
-          </h3>
+        <h3 className={`${isLarge ? 'text-4xl sm:text-5xl' : 'text-xl sm:text-2xl'} font-black tracking-tighter text-zinc-900 dark:text-white mb-2 sm:mb-4 group-hover:translate-x-2 transition-transform duration-500 ease-out`}>
+          {project.title}
+        </h3>
 
-          {!isLarge && (
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4 line-clamp-1">
-              {project.category}
-            </p>
-          )}
+        {!isLarge && (
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-4 line-clamp-1">
+            {project.category}
+          </p>
+        )}
 
-          {isLarge && (
-            <p className={`text-sm text-zinc-600 dark:text-zinc-400 mb-8 max-w-sm leading-relaxed line-clamp-3 sm:text-base`}>
-              {project.description}
-            </p>
-          )}
+        {isLarge && (
+          <p className={`text-sm text-zinc-600 dark:text-zinc-400 mb-8 max-w-sm leading-relaxed line-clamp-3 sm:text-base`}>
+            {project.description}
+          </p>
+        )}
 
-          <div className="mt-auto grid grid-cols-2 gap-4 sm:gap-6 border-t border-zinc-200 dark:border-white/5 pt-6">
-            {project.metrics.map((metric, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col gap-1 transform origin-left transition-all duration-500"
-                style={{ transitionDelay: `${idx * 50}ms` }}
-              >
-                <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tighter">
-                  {metric.value}
-                </span>
-                <span className="text-[8px] sm:text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest font-bold leading-tight">
-                  {metric.label}
-                </span>
-              </div>
-            ))}
-          </div>
+        <div className="mt-auto grid grid-cols-2 gap-4 sm:gap-6 border-t border-zinc-200 dark:border-white/5 pt-6">
+          {project.metrics.map((metric, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col gap-1 transform origin-left transition-all duration-500"
+              style={{ transitionDelay: `${idx * 50}ms` }}
+            >
+              <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tighter">
+                {metric.value}
+              </span>
+              <span className="text-[8px] sm:text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest font-bold leading-tight">
+                {metric.label}
+              </span>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Dynamic Spotlight */}
-        <motion.div
-          className="pointer-events-none absolute -inset-px z-20 hidden rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:block"
-          style={{ background: backgroundOverlay }}
-        />
-      </motion.div>
+      {/* Dynamic Spotlight */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px z-20 hidden rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:block"
+        style={{ background: backgroundOverlay }}
+      />
+    </motion.div>
     </motion.div>
   );
 };
 
-const ProjectsSection: React.FC = () => {
+const ProjectsSection: React.FC<{ showDetailedButton?: boolean }> = ({ showDetailedButton = true }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const isAnyHovered = hoveredIndex !== null;
@@ -172,17 +175,29 @@ const ProjectsSection: React.FC = () => {
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 relative z-10">
 
-        <div className="mb-16 flex flex-col items-start">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-[#059669] animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#059669]">
-              Selected Work
-            </span>
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-6">
+          <div className="flex flex-col items-start">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="w-2 h-2 rounded-full bg-[#059669] animate-pulse shadow-[0_0_10px_rgba(5,150,105,0.4)]" />
+              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#059669]">
+                Selected Work
+              </span>
+            </div>
+            <h2 className="flex flex-wrap gap-x-3 text-4xl font-black tracking-tighter sm:text-4xl">
+              <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-500 bg-clip-text text-transparent">Engineering</span>
+              <span className="inline-block bg-gradient-to-b from-zinc-900 to-zinc-600 dark:from-zinc-100 dark:to-zinc-500 bg-clip-text text-transparent">Excellence.</span>
+            </h2>
           </div>
-          <h2 className="flex flex-wrap gap-x-3 text-4xl font-black tracking-tighter text-zinc-950 sm:text-4xl">
-            <span className="inline-block dark:bg-gradient-to-b dark:from-zinc-100 dark:to-zinc-500 dark:bg-clip-text dark:text-transparent">Engineering</span>
-            <span className="inline-block dark:bg-gradient-to-b dark:from-zinc-100 dark:to-zinc-500 dark:bg-clip-text dark:text-transparent">Excellence.</span>
-          </h2>
+
+          {showDetailedButton && (
+            <Link href="/work" className="group flex items-center gap-3 rounded-full border border-zinc-200 dark:border-white/10 px-6 py-3 text-sm font-semibold transition-all hover:bg-zinc-100 dark:hover:bg-white/5 text-zinc-900 dark:text-white">
+              <span>Work Detailed</span>
+              <div className="relative w-4 h-4 overflow-hidden">
+                <IoArrowForwardOutline className="absolute w-4 h-4 transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-x-full" />
+                <MdArrowOutward className="absolute w-4 h-4 transition-all duration-300 opacity-0 -translate-x-full translate-y-full group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+              </div>
+            </Link>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[320px] gap-4">

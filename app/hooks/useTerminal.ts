@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { PROJECTS } from "@/app/constants/projects";
 import { LineType, TerminalLine, TerminalTheme, Project } from "@/app/types";
 
 type QueueItem = { type: LineType; content: string; label?: string };
 
-// Boot lines written directly — no useEffect, no queue processing
 const BOOT_LINES: QueueItem[] = [
   { type: "system",  content: "Initializing HarshOS v2.4.0..." },
   { type: "system",  content: "Loading developer profile: Harsh Vaddoriya" },
@@ -18,34 +17,33 @@ const BOOT_LINES: QueueItem[] = [
 
 const makeId = () => Math.random().toString(36).substr(2, 9);
 
-const bootHistory: TerminalLine[] = BOOT_LINES.map(l => ({
-  id: makeId(),
-  type: l.type,
-  content: l.content,
-}));
-
 export const useTerminal = () => {
-  const [history, setHistory] = useState<TerminalLine[]>(bootHistory);
+  const [history, setHistory] = useState<TerminalLine[]>([]);
   const [input, setInput] = useState("");
   const [isBooting, setIsBooting] = useState(true);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [terminalTheme, setTerminalTheme] = useState<TerminalTheme>("emerald");
-  const bootCompletedRef = useRef(0);
-
+  
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef  = useRef<HTMLInputElement>(null);
 
-  // Called by Typewriter onComplete for each line. When all boot lines finish, reveal prompt.
-  const onLineComplete = useCallback(() => {
-    bootCompletedRef.current += 1;
-    if (bootCompletedRef.current >= BOOT_LINES.length) {
+  // Simple, direct initialization on mount
+  useEffect(() => {
+    const initial = BOOT_LINES.map(l => ({
+      id: makeId(),
+      type: l.type,
+      content: l.content,
+    }));
+    const timer = setTimeout(() => {
+      setHistory(initial);
+      // Directly end booting for now to ensure visibility
       setIsBooting(false);
-    }
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
-  // Push lines directly to history — called from event handlers, never from effects
   const pushLines = useCallback((lines: QueueItem[]) => {
     const entries: TerminalLine[] = lines.map(l => ({
       id:      makeId(),
@@ -55,7 +53,6 @@ export const useTerminal = () => {
     }));
     setHistory(prev => {
       const next = [...prev, ...entries];
-      // Scroll after paint
       requestAnimationFrame(() => {
         if (scrollRef.current) {
           scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -68,10 +65,7 @@ export const useTerminal = () => {
   const handleCommand = useCallback((cmd: string) => {
     const cleanCmd = cmd.toLowerCase().trim();
     const [baseCmd, ...args] = cleanCmd.split(" ");
-
-    // Echo the user's input
     pushLines([{ type: "input", content: cmd, label: "visitor@harsh-portfolio:~$" }]);
-
     if (!cleanCmd) return;
 
     setCommandHistory(prev => [cmd, ...prev]);
@@ -138,7 +132,11 @@ export const useTerminal = () => {
         pushLines([
           { type: "output", content: "Email: harshvaddoriya0319@gmail.com" },
           { type: "output", content: "LinkedIn: harsh-vaddoriya" },
+          { type: "success", content: "Scrolling to contact section..." },
         ]);
+        setTimeout(() => {
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }, 500);
         break;
       case "resume":
         pushLines([{ type: "success", content: "Preparing CV for download..." }]);
@@ -208,7 +206,6 @@ export const useTerminal = () => {
     input,
     setInput,
     isBooting,
-    isProcessing: false, // kept for API compat — no longer needed
     terminalTheme,
     activeProject,
     setActiveProject,
@@ -216,7 +213,6 @@ export const useTerminal = () => {
     inputRef,
     handleCommand,
     handleKeyDown,
-    onLineComplete,
     setHistory,
   };
 };

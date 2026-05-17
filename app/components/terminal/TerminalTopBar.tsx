@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Terminal, Maximize2, RotateCcw, Cpu, Activity } from "lucide-react";
+import { Terminal, RotateCcw, Cpu, Activity } from "lucide-react";
 
 interface TerminalTopBarProps {
   onReset: () => void;

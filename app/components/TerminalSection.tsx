@@ -6,10 +6,12 @@ import { useTerminal } from "@/app/hooks/useTerminal";
 import TerminalTopBar from "./terminal/TerminalTopBar";
 import QuickCommands from "./terminal/QuickCommands";
 import ProjectModal from "./terminal/ProjectModal";
-import Typewriter from "./terminal/Typewriter";
 
 const TerminalSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
 
   const {
     history,
@@ -23,9 +25,10 @@ const TerminalSection = () => {
     inputRef,
     handleCommand,
     handleKeyDown,
-    onLineComplete,
     setHistory
   } = useTerminal();
+
+  if (!mounted) return <div className="w-full h-[600px] bg-white dark:bg-zinc-950" />;
 
   return (
     <section
@@ -84,34 +87,27 @@ const TerminalSection = () => {
               <div className="absolute inset-0 pointer-events-none z-10 opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
 
               <div className="relative z-20 space-y-2">
-                {history.map((line, idx) => (
-                  <div key={line.id}>
-                    {line.label && (
-                      <span
-                        className="font-bold mr-3"
-                        style={{
-                          color: terminalTheme === 'emerald' ? '#10b981' :
-                            terminalTheme === 'cyan' ? '#06b6d4' :
-                              terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
-                        }}
-                      >
-                        {line.label}
-                      </span>
-                    )}
-                    <span className={line.type === "error" ? "text-rose-500" : line.type === "system" ? "text-zinc-500" : line.type === "success" ? "text-emerald-500" : "text-zinc-300"}>
-                      {typeof line.content === "string" && line.type !== "input" && idx < 6 ? (
-                        <Typewriter
-                          text={line.content}
-                          speed={line.type === "system" ? 20 : 35}
-                          delay={idx * 400}
-                          onComplete={onLineComplete}
-                        />
-                      ) : (
-                        line.content
+                {history.map((line) => {
+                  return (
+                    <div key={line.id}>
+                      {line.label && (
+                        <span
+                          className="font-bold mr-3"
+                          style={{
+                            color: terminalTheme === 'emerald' ? '#10b981' :
+                              terminalTheme === 'cyan' ? '#06b6d4' :
+                                terminalTheme === 'amber' ? '#f59e0b' : '#f43f5e'
+                          }}
+                        >
+                          {line.label}
+                        </span>
                       )}
-                    </span>
-                  </div>
-                ))}
+                      <span className={line.type === "error" ? "text-rose-500" : line.type === "system" ? "text-zinc-500" : line.type === "success" ? "text-emerald-500" : "text-zinc-300"}>
+                        {line.content}
+                      </span>
+                    </div>
+                  );
+                })}
 
                 {!isBooting && (
                   <div className="flex items-center">
